@@ -25,7 +25,7 @@ dialog{padding:24px 32px;border:1px solid var(--line);background:var(--ink);colo
 .film-index{display:none}
 .immersive .journey{height:560svh}
 .immersive .film-stage{height:100svh;min-height:0;isolation:isolate}
-.immersive .film-scene{min-height:0;will-change:opacity,clip-path}
+.immersive .film-scene{min-height:0;will-change:opacity}
 .immersive .film-copy,.immersive .film-scene:first-child .film-copy{bottom:100px;padding:0;max-width:74%}
 .immersive .film-poster,.immersive .film-video{transform:translateY(var(--scene-shift,0%)) scale(1.035)}
 .immersive .film-shade{background:linear-gradient(90deg,rgba(7,26,37,.22),transparent 72%),linear-gradient(0deg,rgba(7,26,37,.72),transparent 70%)}

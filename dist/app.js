@@ -1,6 +1,6 @@
 import {copy, languages} from './i18n.js';
 import {media} from './media.js';
-import {clamp, sceneAt, waveReveal, chooseSource, languageForPath} from './player-utils.js';
+import {clamp, sceneAt, chooseSource, languageForPath} from './player-utils.js';
 
 const $ = (selector, context=document) => context.querySelector(selector);
 const $$ = (selector, context=document) => [...context.querySelectorAll(selector)];
@@ -95,7 +95,8 @@ function updateScroll() {
       const opacity=outgoing?1:incoming?state.blend:0;
       scene.style.opacity=String(opacity);
       scene.style.zIndex=String(index);
-      scene.style.clipPath=incoming?waveReveal(state.blend):'none';
+      // Blend the whole frame; no reveal boundary or clipping mask.
+      scene.style.clipPath='none';
       scene.classList.toggle('is-current',index===current);
       scene.inert=index!==current;
       scene.setAttribute('aria-hidden',String(index!==current));

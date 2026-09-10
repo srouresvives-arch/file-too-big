@@ -24,7 +24,7 @@ function fixture({width=1440,height=900,reduced=false,saveData=false,delayVideo=
     if(this.classList.contains('journey'))return {top:-w.scrollY,bottom:journeyHeight-w.scrollY,height:journeyHeight,width,left:0,right:width};
     if(this.classList.contains('film-visual')){
       const index=[...d.querySelectorAll('.film-visual')].indexOf(this);
-      const visualHeight=width<height?Math.min(height*.68,width*1.25):height;
+      const visualHeight=height;
       const top=reduced?index*height-w.scrollY:(height-visualHeight)/2;
       return {top,bottom:top+visualHeight,width,height:visualHeight,left:0,right:width};
     }
@@ -123,11 +123,19 @@ test('transitions keep an opaque background, overlap playback briefly, and hold 
   for(const width of [390,768,1366,1920]){
     const f=fixture({width});await f.flush();
     const distance=(width<900?5.2:5.6)*900-900;
-    f.w.scrollTo({top:distance*.175});await f.flush();
     const scenes=[...f.d.querySelectorAll('.film-scene')];
-    assert.equal(scenes[0].style.opacity,'1');
-    assert(scenes[1].style.clipPath.startsWith('polygon'));
-    assert.equal(f.d.querySelectorAll('.film-scene.is-playing').length,2);
+    for(const index of [0,1,2]){
+      let previous=0;
+      for(const fraction of [.42,.55,.69,.82,.96]){
+        f.w.scrollTo({top:distance*(index+fraction)/4});await f.flush();
+        const blend=Number(scenes[index+1].style.opacity);
+        assert(blend>previous && blend<1,'Whole-frame opacity rises continuously');
+        previous=blend;
+        assert.equal(scenes[index].style.opacity,'1','Outgoing image prevents a black dip');
+        assert(scenes.every(scene=>scene.style.clipPath==='none'),'No visible reveal boundary');
+        assert.equal(f.d.querySelectorAll('.film-scene.is-playing').length,2);
+      }
+    }
     f.w.scrollTo({top:distance*.95});await f.flush();
     assert(scenes.at(-1).classList.contains('is-current'));
     assert.equal(scenes.at(-1).style.opacity,'1');
