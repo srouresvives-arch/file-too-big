@@ -1,8 +1,8 @@
-name: Deploy dev to GitHub Pages
+name: Deploy main and dev preview to GitHub Pages
 
 on:
   push:
-    branches: [dev]
+    branches: [main, dev]
   workflow_dispatch:
 
 permissions:
@@ -18,36 +18,62 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: main-src
+
       - name: Checkout dev
         uses: actions/checkout@v4
+        with:
+          ref: dev
+          path: dev-src
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: npm
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build and verify
+      - name: Build and verify main
+        working-directory: main-src
         env:
           SITE_ORIGIN: https://srouresvives-arch.github.io/file-too-big
           PAGES_BASE_PATH: /file-too-big
         run: |
+          npm ci
           npm run media:build
           npm run build
           npm run check
           npm test
           npm run prepare:pages
 
+      - name: Build and verify dev preview
+        working-directory: dev-src
+        env:
+          SITE_ORIGIN: https://srouresvives-arch.github.io/file-too-big/dev
+          PAGES_BASE_PATH: /file-too-big/dev
+        run: |
+          npm ci
+          npm run media:build
+          npm run build
+          npm run check
+          npm test
+          npm run prepare:pages
+
+      - name: Assemble Pages site
+        run: |
+          mkdir -p site/dev
+          cp -a main-src/.pages/. site/
+          cp -a dev-src/.pages/. site/dev/
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .pages
+          path: site
 
   deploy:
     environment:
