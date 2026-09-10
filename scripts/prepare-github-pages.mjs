@@ -6,7 +6,7 @@ const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const source = path.join(root, 'dist');
 const output = path.join(root, '.pages');
 const basePath = normalizeBase(process.env.PAGES_BASE_PATH || '/file-too-big');
-const mediaOrigin = (process.env.MEDIA_ORIGIN || 'https://file-too-big-v2.srouresvives.chatgpt.site').replace(/\/+$/, '');
+const mediaOrigin = 'https://res.cloudinary.com/jgvr0ayi';
 
 function normalizeBase(value) {
   if (!value || value === '/') return '';
@@ -22,7 +22,7 @@ function write(file, value) {
 }
 
 function rewriteMedia(value) {
-  return value.replaceAll('/media/', mediaOrigin + '/media/');
+  return value;
 }
 
 function rewriteHtml(value) {
@@ -95,8 +95,9 @@ for (const relative of ['index.html', 'ca/index.html', 'es/index.html']) {
 if (!read(appJs).includes(`const siteBase=${JSON.stringify(basePath)};`)) {
   throw new Error('GitHub Pages base path was not injected into app.js');
 }
-if (!read(mediaJs).includes(mediaOrigin + '/media/')) {
+if (!read(mediaJs).includes(mediaOrigin + '/')) {
   throw new Error('Media origin was not injected into media.js');
 }
 
 console.log(`Prepared GitHub Pages output in .pages (base ${basePath || '/'}, media ${mediaOrigin}).`);
+

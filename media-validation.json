@@ -1,0 +1,155 @@
+[
+  {
+    "key": "sea-video",
+    "status": 200,
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "bytes": 18843623
+  },
+  {
+    "key": "sea-poster",
+    "status": 200,
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "bytes": 133988
+  },
+  {
+    "key": "space-video",
+    "status": 200,
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "bytes": 7964325
+  },
+  {
+    "key": "space-poster",
+    "status": 200,
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "bytes": 403390
+  },
+  {
+    "key": "ride-video",
+    "status": 200,
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "bytes": 9376543
+  },
+  {
+    "key": "ride-poster",
+    "status": 200,
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "bytes": 501096
+  },
+  {
+    "key": "run-video",
+    "status": 200,
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "bytes": 2227446
+  },
+  {
+    "key": "run-poster",
+    "status": 200,
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "bytes": 104414
+  },
+  {
+    "key": "coast",
+    "status": 200,
+    "dimensions": [
+      2048,
+      1152
+    ],
+    "bytes": 1003620
+  },
+  {
+    "key": "boats",
+    "status": 200,
+    "dimensions": [
+      1152,
+      2048
+    ],
+    "bytes": 177814
+  },
+  {
+    "key": "geometry",
+    "status": 200,
+    "dimensions": [
+      1600,
+      900
+    ],
+    "bytes": 523350
+  },
+  {
+    "key": "residence",
+    "status": 200,
+    "dimensions": [
+      1600,
+      900
+    ],
+    "bytes": 371090
+  },
+  {
+    "key": "passage",
+    "status": 200,
+    "dimensions": [
+      1600,
+      900
+    ],
+    "bytes": 103354
+  },
+  {
+    "key": "curve",
+    "status": 200,
+    "dimensions": [
+      1600,
+      900
+    ],
+    "bytes": 403860
+  },
+  {
+    "key": "copper",
+    "status": 200,
+    "dimensions": [
+      1600,
+      900
+    ],
+    "bytes": 583768
+  },
+  {
+    "key": "afterglow",
+    "status": 200,
+    "dimensions": [
+      1600,
+      900
+    ],
+    "bytes": 51820
+  },
+  {
+    "key": "sergi",
+    "status": 200,
+    "dimensions": [
+      864,
+      1536
+    ],
+    "bytes": 443690
+  }
+]

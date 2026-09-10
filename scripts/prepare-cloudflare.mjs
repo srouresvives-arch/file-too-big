@@ -9,4 +9,4 @@ for(const name of fs.readdirSync(path.join(root,'dist'))){
   if(name==='media')continue;
   fs.cpSync(path.join(root,'dist',name),path.join(target,name),{recursive:true});
 }
-console.log('Static frontend prepared. Media is excluded and served through the R2 Worker.');
+console.log('Static frontend prepared. Media is delivered directly by Cloudinary; no Worker media proxy or R2 binding.');

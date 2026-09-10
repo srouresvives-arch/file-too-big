@@ -1,0 +1,149 @@
+{
+  "coast": {
+    "public_id": "aqf4kdvusvufomyeidm6",
+    "version": 1789067460,
+    "secure_url": "https://res.cloudinary.com/jgvr0ayi/image/upload/v1789067460/aqf4kdvusvufomyeidm6.jpg",
+    "width": 2048,
+    "height": 1152,
+    "resource_type": "image",
+    "format": "jpg",
+    "bytes": 913218,
+    "source_filename": "02-calella2.JPG"
+  },
+  "sea": {
+    "public_id": "yiusey1h4dwozyq7dchu",
+    "version": 1789067579,
+    "secure_url": "https://res.cloudinary.com/jgvr0ayi/video/upload/v1789067579/yiusey1h4dwozyq7dchu.mp4",
+    "width": 1920,
+    "height": 1080,
+    "resource_type": "video",
+    "format": "mp4",
+    "bytes": 18843623,
+    "source_filename": "sea.mp4",
+    "duration": 11.8
+  },
+  "space": {
+    "public_id": "zxayetlwoqconp7xcauz",
+    "version": 1789067594,
+    "secure_url": "https://res.cloudinary.com/jgvr0ayi/video/upload/v1789067594/zxayetlwoqconp7xcauz.mp4",
+    "width": 1920,
+    "height": 1080,
+    "resource_type": "video",
+    "format": "mp4",
+    "bytes": 7964325,
+    "source_filename": "space.mp4",
+    "duration": 5.4
+  },
+  "ride": {
+    "public_id": "yho6ovhatrxksmccb0vc",
+    "version": 1789067610,
+    "secure_url": "https://res.cloudinary.com/jgvr0ayi/video/upload/v1789067610/yho6ovhatrxksmccb0vc.mp4",
+    "width": 1920,
+    "height": 1080,
+    "resource_type": "video",
+    "format": "mp4",
+    "bytes": 9376543,
+    "source_filename": "ride-1080.123a505ddb.mp4",
+    "duration": 7.8
+  },
+  "run": {
+    "public_id": "lo0qyefugf7agrnad345",
+    "version": 1789067620,
+    "secure_url": "https://res.cloudinary.com/jgvr0ayi/video/upload/v1789067620/lo0qyefugf7agrnad345.mp4",
+    "width": 1920,
+    "height": 1080,
+    "resource_type": "video",
+    "format": "mp4",
+    "bytes": 2227446,
+    "source_filename": "run-1080.a9ef7f65c2.mp4",
+    "duration": 3.25
+  },
+  "boats": {
+    "public_id": "kqxpaz5pq78kfncy38zt",
+    "version": 1789067632,
+    "secure_url": "https://res.cloudinary.com/jgvr0ayi/image/upload/v1789067632/kqxpaz5pq78kfncy38zt.jpg",
+    "width": 1152,
+    "height": 2048,
+    "resource_type": "image",
+    "format": "jpg",
+    "bytes": 198735,
+    "source_filename": "04-barquitos.JPG"
+  },
+  "sergi": {
+    "public_id": "zxrkjyecslopzgxvhiqw",
+    "version": 1789067907,
+    "secure_url": "https://res.cloudinary.com/jgvr0ayi/image/upload/v1789067907/zxrkjyecslopzgxvhiqw.jpg",
+    "width": 864,
+    "height": 1536,
+    "resource_type": "image",
+    "format": "jpg",
+    "bytes": 527164,
+    "source_filename": "sergi-roures.jpeg"
+  },
+  "geometry": {
+    "public_id": "yxfifhn3i2dfpdmquunh",
+    "version": 1789067659,
+    "secure_url": "https://res.cloudinary.com/jgvr0ayi/image/upload/v1789067659/yxfifhn3i2dfpdmquunh.webp",
+    "width": 1600,
+    "height": 900,
+    "resource_type": "image",
+    "format": "webp",
+    "bytes": 413866,
+    "source_filename": "overhead.webp"
+  },
+  "residence": {
+    "public_id": "gtkiymecpq3agqjhtiiw",
+    "version": 1789067670,
+    "secure_url": "https://res.cloudinary.com/jgvr0ayi/image/upload/v1789067670/gtkiymecpq3agqjhtiiw.webp",
+    "width": 1600,
+    "height": 900,
+    "resource_type": "image",
+    "format": "webp",
+    "bytes": 254688,
+    "source_filename": "estate.webp"
+  },
+  "passage": {
+    "public_id": "d5nowokohuyzsx48f5r9",
+    "version": 1789067681,
+    "secure_url": "https://res.cloudinary.com/jgvr0ayi/image/upload/v1789067681/d5nowokohuyzsx48f5r9.webp",
+    "width": 1600,
+    "height": 900,
+    "resource_type": "image",
+    "format": "webp",
+    "bytes": 72390,
+    "source_filename": "boat.webp"
+  },
+  "curve": {
+    "public_id": "wvum81jo4i0wc9yi4unj",
+    "version": 1789067691,
+    "secure_url": "https://res.cloudinary.com/jgvr0ayi/image/upload/v1789067691/wvum81jo4i0wc9yi4unj.webp",
+    "width": 1600,
+    "height": 900,
+    "resource_type": "image",
+    "format": "webp",
+    "bytes": 308288,
+    "source_filename": "moto.webp"
+  },
+  "copper": {
+    "public_id": "kxwvtjrsbsmk9wixnspu",
+    "version": 1789067704,
+    "secure_url": "https://res.cloudinary.com/jgvr0ayi/image/upload/v1789067704/kxwvtjrsbsmk9wixnspu.webp",
+    "width": 1600,
+    "height": 900,
+    "resource_type": "image",
+    "format": "webp",
+    "bytes": 464068,
+    "source_filename": "st-mary.webp"
+  },
+  "afterglow": {
+    "public_id": "q7ndrbqp4htzase2dccs",
+    "version": 1789067715,
+    "secure_url": "https://res.cloudinary.com/jgvr0ayi/image/upload/v1789067715/q7ndrbqp4htzase2dccs.webp",
+    "width": 1600,
+    "height": 900,
+    "resource_type": "image",
+    "format": "webp",
+    "bytes": 30732,
+    "source_filename": "sunset.webp"
+  }
+}

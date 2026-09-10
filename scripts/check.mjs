@@ -32,16 +32,16 @@ assert.equal(copy.ca.contactTitle,'Fem que el teu lloc <em>parli.</em>');
 const mediaFiles=new Set();
 function visit(value){if(Array.isArray(value))value.forEach(visit);else if(value&&typeof value==='object'){if(value.url)mediaFiles.add(value.url);Object.values(value).forEach(visit);}}
 visit(media);
-for(const url of mediaFiles)assert(fs.existsSync(path.join(dist,url)),'Media exists: '+url);
-for(const film of Object.values(media.films)){
-  assert(film.sources.every(s=>s.width>=1920&&s.height>=1080),'No degraded mobile encodes');
-  const bytes=fs.readFileSync(path.join(dist,film.sources[0].url));
-  let offset=0,moov=-1,mdat=-1;
-  while(offset+8<=bytes.length){const size=bytes.readUInt32BE(offset),type=bytes.toString('ascii',offset+4,offset+8);if(type==='moov')moov=offset;if(type==='mdat')mdat=offset;if(size<8)break;offset+=size;}
-  assert(moov>=0&&mdat>moov,'MP4 metadata precedes media for progressive playback');
-  assert.equal(bytes.length,film.bytes);
+for(const url of mediaFiles){
+ const u=new URL(url);
+ assert.equal(u.origin,'https://res.cloudinary.com');
+ assert(u.pathname.startsWith('/jgvr0ayi/'));
+ assert(u.pathname.includes('/upload/'));
 }
-const unreferenced=fs.readdirSync(path.join(dist,'media/v2')).filter(file=>!mediaFiles.has('/media/v2/'+file));
-assert.deepEqual(unreferenced,[],'No unused media variants in deployed output');
-const total=[...mediaFiles].reduce((sum,url)=>sum+fs.statSync(path.join(dist,url)).size,0);
-console.log('Validated three language routes, links, semantic structure, local assets and MP4 fast-start. Media: '+(total/1e6).toFixed(2)+' MB across '+mediaFiles.size+' files.');
+assert.deepEqual(Object.keys(media.films),['sea','space','ride','run']);
+assert.equal(Object.keys(media.frames).length,8);
+for(const film of Object.values(media.films)){
+ assert(film.sources.every(s=>s.width>=1920&&s.height>=1080));
+ assert(film.duration>0&&film.bytes>0);
+}
+console.log('Validated all three languages, local frontend assets and Cloudinary media mappings.');
