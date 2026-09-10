@@ -1,0 +1,30 @@
+name: Deploy independent V2
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: file-too-big-v2
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      SITE_ORIGIN: ${{ vars.V2_SITE_ORIGIN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Validate configured V2 destination
+        run: node scripts/check-deployment-env.mjs
+      - run: npm run build
+      - run: npm run check
+      - run: npm test
+      - run: npm run prepare:cloudflare
+      - run: node scripts/upload-r2.mjs --apply
+      - run: npx wrangler deploy

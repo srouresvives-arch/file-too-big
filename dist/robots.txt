@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://file-too-big-v2.srouresvives.chatgpt.site/sitemap.xml
