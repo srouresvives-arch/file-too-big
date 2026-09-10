@@ -7,6 +7,7 @@ const source = path.join(root, 'dist');
 const output = path.join(root, '.pages');
 const basePath = normalizeBase(process.env.PAGES_BASE_PATH || '/file-too-big');
 const mediaOrigin = 'https://res.cloudinary.com/jgvr0ayi';
+const deployVersion = (process.env.GITHUB_SHA || process.env.DEPLOY_VERSION || 'local').slice(0, 12);
 
 function normalizeBase(value) {
   if (!value || value === '/') return '';
@@ -32,6 +33,9 @@ function rewriteHtml(value) {
     const rewritten = list.replace(/(^|,\s*)\/(?!\/)/g, `$1${basePath}/`);
     return start + rewritten + '"';
   });
+  for (const asset of ['style.css', 'app.js']) {
+    next = next.replaceAll(`"${basePath}/${asset}"`, `"${basePath}/${asset}?v=${deployVersion}"`);
+  }
   return next;
 }
 
@@ -49,6 +53,9 @@ function rewriteApp(value) {
     "const route=lang==='en'?'/':'/'+lang+'/';",
     "const route=siteBase+(lang==='en'?'/':'/'+lang+'/');"
   );
+  for (const asset of ['i18n.js', 'media.js', 'player-utils.js']) {
+    next = next.replaceAll(`'./${asset}'`, `'./${asset}?v=${deployVersion}'`);
+  }
   return next;
 }
 
@@ -93,6 +100,9 @@ for (const relative of ['index.html', 'ca/index.html', 'es/index.html']) {
   if (html.includes('src="/app.js"') || html.includes('href="/style.css"')) {
     throw new Error(`Unprefixed local asset remained in ${relative}`);
   }
+  if (!html.includes(`${basePath}/app.js?v=${deployVersion}`) || !html.includes(`${basePath}/style.css?v=${deployVersion}`)) {
+    throw new Error(`Cache-busted frontend assets were not injected into ${relative}`);
+  }
   if (html.includes('"/media/')) {
     throw new Error(`Unrewritten media path remained in ${relative}`);
   }
@@ -101,6 +111,9 @@ for (const relative of ['index.html', 'ca/index.html', 'es/index.html']) {
 if (!read(appJs).includes(`const siteBase=${JSON.stringify(basePath)};`)) {
   throw new Error('GitHub Pages base path was not injected into app.js');
 }
+if (!read(appJs).includes(`./player-utils.js?v=${deployVersion}`)) {
+  throw new Error('Cache-busted module imports were not injected into app.js');
+}
 if (!read(mediaJs).includes(mediaOrigin + '/')) {
   throw new Error('Media origin was not injected into media.js');
 }
@@ -108,4 +121,4 @@ if (!read(css).includes('Every cinematic chapter fills the viewport')) {
   throw new Error('Viewport overrides were not bundled into the GitHub Pages stylesheet');
 }
 
-console.log(`Prepared GitHub Pages output in .pages (base ${basePath || '/'}, media ${mediaOrigin}).`);
+console.log(`Prepared GitHub Pages output in .pages (base ${basePath || '/'}, media ${mediaOrigin}, version ${deployVersion}).`);
