@@ -77,7 +77,13 @@ const helpers = path.join(output, 'player-utils.js');
 write(helpers, rewriteHelpers(read(helpers)));
 
 const css = path.join(output, 'style.css');
-write(css, read(css).replaceAll("url('/fonts/", `url('${basePath}/fonts/`));
+const viewportOverrides = path.join(output, 'viewport-overrides.css');
+write(
+  css,
+  read(css).replaceAll("url('/fonts/", `url('${basePath}/fonts/`) +
+    '\n\n' +
+    read(viewportOverrides)
+);
 
 const manifest = path.join(output, 'media-manifest.json');
 write(manifest, rewriteMedia(read(manifest)));
@@ -98,6 +104,8 @@ if (!read(appJs).includes(`const siteBase=${JSON.stringify(basePath)};`)) {
 if (!read(mediaJs).includes(mediaOrigin + '/')) {
   throw new Error('Media origin was not injected into media.js');
 }
+if (!read(css).includes('Every cinematic chapter fills the viewport')) {
+  throw new Error('Viewport overrides were not bundled into the GitHub Pages stylesheet');
+}
 
 console.log(`Prepared GitHub Pages output in .pages (base ${basePath || '/'}, media ${mediaOrigin}).`);
-
