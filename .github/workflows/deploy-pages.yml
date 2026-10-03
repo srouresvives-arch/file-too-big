@@ -99,4 +99,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-# Olympus Athlete v4: calendar, editable history and custom plans
+# Olympus Athlete v4.1: calendar, editable history and custom plans
