@@ -36,6 +36,12 @@ jobs:
           ref: olympus-athlete-v3
           path: olympus-src
 
+      - name: Checkout Olympus Athlete Trials
+        uses: actions/checkout@v4
+        with:
+          ref: olympus-athlete-trials
+          path: olympus-trials-src
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -72,7 +78,7 @@ jobs:
 
       - name: Assemble Pages site
         run: |
-          mkdir -p site/dev site/olympus
+          mkdir -p site/dev site/olympus site/olympus-trials
           cp -a main-src/.pages/. site/
           cp -a dev-src/.pages/. site/dev/
           cp olympus-src/index.html site/olympus/
@@ -82,6 +88,13 @@ jobs:
           cp olympus-src/manifest.webmanifest site/olympus/
           cp olympus-src/sw.js site/olympus/
           cp olympus-src/icon.svg site/olympus/
+          cp olympus-trials-src/index.html site/olympus-trials/
+          cp olympus-trials-src/styles.css site/olympus-trials/
+          cp olympus-trials-src/data.js site/olympus-trials/
+          cp olympus-trials-src/app.js site/olympus-trials/
+          cp olympus-trials-src/manifest.webmanifest site/olympus-trials/
+          cp olympus-trials-src/sw.js site/olympus-trials/
+          cp olympus-trials-src/icon.svg site/olympus-trials/
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
@@ -99,4 +112,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-# Olympus Athlete v4.3: detailed exercise stats and charts
+# Olympus Athlete official + isolated Trials preview
