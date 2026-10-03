@@ -30,6 +30,12 @@ jobs:
           ref: dev
           path: dev-src
 
+      - name: Checkout Olympus Athlete
+        uses: actions/checkout@v4
+        with:
+          ref: olympus-athlete-v3
+          path: olympus-src
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -66,9 +72,16 @@ jobs:
 
       - name: Assemble Pages site
         run: |
-          mkdir -p site/dev
+          mkdir -p site/dev site/olympus
           cp -a main-src/.pages/. site/
           cp -a dev-src/.pages/. site/dev/
+          cp olympus-src/index.html site/olympus/
+          cp olympus-src/styles.css site/olympus/
+          cp olympus-src/data.js site/olympus/
+          cp olympus-src/app.js site/olympus/
+          cp olympus-src/manifest.webmanifest site/olympus/
+          cp olympus-src/sw.js site/olympus/
+          cp olympus-src/icon.svg site/olympus/
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
