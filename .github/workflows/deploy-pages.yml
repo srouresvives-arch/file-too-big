@@ -2,7 +2,7 @@ name: Deploy main and dev preview to GitHub Pages
 
 on:
   push:
-    branches: [main, dev]
+    branches: [main, dev, olympus-athlete-v3, olympus-athlete-trials]
   workflow_dispatch:
 
 permissions:
@@ -112,4 +112,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-# Olympus Athlete official + isolated Trials preview
+# Olympus Athlete official + isolated Trials preview v5.1
