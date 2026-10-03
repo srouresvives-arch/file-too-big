@@ -99,4 +99,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-# Olympus Athlete v4.2: cache fix and compact icon navigation
+# Olympus Athlete v4.3: detailed exercise stats and charts
