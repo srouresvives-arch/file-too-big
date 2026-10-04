@@ -112,4 +112,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-# Olympus Athlete official + isolated Trials preview · trials v5.1 pacing/weekly review/import
+# Olympus Athlete official + isolated Trials preview · trials v5.2
