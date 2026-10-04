@@ -113,3 +113,5 @@ jobs:
         uses: actions/deploy-pages@v4
 
 # Olympus Athlete official + isolated Trials preview · trials v5.2
+
+# Trials v5.3 continuous official-data sync
