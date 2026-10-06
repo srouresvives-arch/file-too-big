@@ -2,7 +2,7 @@ name: Deploy main and dev preview to GitHub Pages
 
 on:
   push:
-    branches: [main, dev, olympus-athlete-v3, olympus-athlete-trials]
+    branches: [main, dev]
   workflow_dispatch:
 
 permissions:
@@ -29,18 +29,6 @@ jobs:
         with:
           ref: dev
           path: dev-src
-
-      - name: Checkout Olympus Athlete
-        uses: actions/checkout@v4
-        with:
-          ref: olympus-athlete-v3
-          path: olympus-src
-
-      - name: Checkout Olympus Athlete Trials
-        uses: actions/checkout@v4
-        with:
-          ref: olympus-athlete-trials
-          path: olympus-trials-src
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -78,23 +66,9 @@ jobs:
 
       - name: Assemble Pages site
         run: |
-          mkdir -p site/dev site/olympus site/olympus-trials
+          mkdir -p site/dev
           cp -a main-src/.pages/. site/
           cp -a dev-src/.pages/. site/dev/
-          cp olympus-src/index.html site/olympus/
-          cp olympus-src/styles.css site/olympus/
-          cp olympus-src/data.js site/olympus/
-          cp olympus-src/app.js site/olympus/
-          cp olympus-src/manifest.webmanifest site/olympus/
-          cp olympus-src/sw.js site/olympus/
-          cp olympus-src/icon.svg site/olympus/
-          cp olympus-trials-src/index.html site/olympus-trials/
-          cp olympus-trials-src/styles.css site/olympus-trials/
-          cp olympus-trials-src/data.js site/olympus-trials/
-          cp olympus-trials-src/app.js site/olympus-trials/
-          cp olympus-trials-src/manifest.webmanifest site/olympus-trials/
-          cp olympus-trials-src/sw.js site/olympus-trials/
-          cp olympus-trials-src/icon.svg site/olympus-trials/
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
@@ -112,18 +86,10 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-# Olympus Athlete official + isolated Trials preview · trials v5.2
 
-# Trials v5.3 continuous official-data sync
 
-# Trials v5.4 recover Oct 3 workout
 
-# Trials v5.5 visible session details and backup
 
-# Trials v5.6 full calendar session editor
 
-# Trials v5.7 historical edit persistence fix
 
-# Trials v5.8 import Oct 3 video dataset
 
-# Promote Olympus Trials v5.8 to official v6.0
